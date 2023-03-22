@@ -1,4 +1,5 @@
-# JWT_authorization_Nodemailer
+# Simplified_Ecommerce_Server
+
 
 
 
@@ -25,11 +26,14 @@ SMTP_PASS=<YOUR_GMAIL_PASSWORD>
 * mongoose: "^6.9.0",
 * mongoose-unique-validator: "^3.1.0",
 * nodemailer: "^6.9.1",
-* nodemon: "^2.0.20"
+* nodemon: "^2.0.20",
+* fs: "^0.0.1-security"
 ```
 
 ### Run Server
 
 ```
 npm run go
+
+node dummy-generator.js --import to load dummy data to database
 ```

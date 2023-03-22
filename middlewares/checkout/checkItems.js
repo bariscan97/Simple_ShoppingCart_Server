@@ -12,7 +12,7 @@ const checkItems = async(req,res,next)=>{
             let product = await Product.findOne({id:cart[i].product})
             product.stack=parseInt(product.stack)-parseInt(cart[i].stack)
             if (parseInt(product.stack)<parseInt(cart[i].stack)){
-               return next(new CustomError("stokta bazi urunler yeterince yok sepetinizi kontrol edin"))
+               return next(new CustomError("some items are out of stock check your cart"))
             }
         }
         next()

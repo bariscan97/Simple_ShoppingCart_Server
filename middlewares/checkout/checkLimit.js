@@ -12,7 +12,7 @@ const checkLimit = async(req,res,next)=>{
             total+=parseInt(cart[i].total)
         }
         if (Number(total)<100){
-            return next(new CustomError("sepetiniz en az 100 lira olmalidir"))
+            return next(new CustomError("Your basket must be at least 100 TL"))
         }
         next()
        

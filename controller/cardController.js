@@ -9,7 +9,7 @@ const getCard= async(req,res,next)=>{
         
         const cart=await Cart.find({user:req.user.userid})
         if (!cart){
-            return next(new CustomError("Cart bos",400))
+            return next(new CustomError("card is empty",400))
         }
         return res.status(200)
         .json({
@@ -28,7 +28,8 @@ const addItem = async(req,res,next)=>{
         const {productid}= req.params
         const product=await Product.findById(productid)
         if (!product){
-            return next(new CustomError("ürün yok",400))
+            return next(new CustomError("no product",400))
+            
         }
         const cart=await Cart.findOne({user:req.user.userid,product:productid})
         if (!cart){
@@ -48,7 +49,7 @@ const addItem = async(req,res,next)=>{
         }else{
             cart.stack=parseInt(cart.stack)+1
             if (parseInt(product.stack)<cart.stack){
-                return next(new CustomError(`stokta yanlizca ${product.stack} var`,400))
+                return next(new CustomError(`in stock only ${product.stack}`,400))
             }
             cart.total=parseInt(cart.stack)*parseInt(cart.price)
             const data = await cart.save()
@@ -71,7 +72,7 @@ const decreaseItem = async(req,res,next)=>{
 
         const cart  = await Cart.findById(productid)
         if (!cart){
-            return next(new CustomError("islem yapilamaz",404))
+            return next(new CustomError("cannot be processed",404))
         }
         cart.stack=parseInt(cart.stack)-1
         if (parseInt(cart.stack)===0){

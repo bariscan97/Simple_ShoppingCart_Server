@@ -12,8 +12,9 @@ const checkLimit = async(req,res,next)=>{
             total+=parseInt(cart[i].total)
         }
         if (Number(total)<100){
-            return next(new CustomError("Your basket must be at least 100 TL"))
-        }
+            let diff = 100-Number(total)
+            return next(new CustomError(`The minimum limit is $100. Add $${diff} items to your cart.`,400))
+           }
         next()
        
     

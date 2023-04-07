@@ -1,4 +1,4 @@
-# Simplified_Ecommerce_Server
+# Simple_ShoppingCart_Server
 
 
 
